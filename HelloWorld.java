@@ -1,7 +1,7 @@
 // Matthew Cook aka Big Cat 
 // CS 143
 // HW #0: Setting up your Dev Environment
-// github.com/theoriginalmattcook/CS143
+// github.com/BigCatNW/CS143
 
 
 import java.util.Scanner;
