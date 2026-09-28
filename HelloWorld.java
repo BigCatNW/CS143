@@ -24,6 +24,8 @@ class HelloWorld {
       
    }
    
+   // pre: none
+   // post: prints "Hello World" 5 times
    public static void printHelloWorld(){
     for (int i=1; i<=5; i++){
          System.out.printf("%s\n", "Hello World");
