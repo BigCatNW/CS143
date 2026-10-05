@@ -1,3 +1,10 @@
+// Matthew Cook aka Big Cat
+// CS 143 
+// ArrayIntList Equals and Unit Test
+// 10/3/26
+
+// A class that creates an ArrayIntList object, similar to an array
+// but with additional properties and methods for easier use.
 public class ArrayIntList implements IntList{
    private int[] data; // array of integers
    private int size;   // current number of elements in the list
@@ -49,13 +56,46 @@ public class ArrayIntList implements IntList{
       for (int i = 0; i < size; i++)  {
          str = str + data[i];
          if (i < size - 1){
-            str = str + ",";
+            str = str + ", ";
          }
       }
       str = str + "]";
       return str; 
    }
 	
+   // pre: none
+   // post: returns true if the argument passed to the method is an ArrayIntList object
+   //       and is identical to this object (same size and all elements are equal).
+   //       Otherwise, returns false. 
+   public boolean equals(Object o){
+      // Test if we are comparing an object to itself
+      if(this == o){
+         return true;
+      }
+      // Test if object is null
+      if(o == null) {
+         return false;
+      }
+      // Verify classes are the same (before casting)
+      if(this.getClass() != o.getClass()){
+         return false;
+      }
+      // Cast object to ArrayIntList
+      ArrayIntList newList = (ArrayIntList) o;
+      // Compare sizes
+      if(this.size() != newList.size()){
+         return false;
+      }
+      // Itereate through the lists, comparing values
+      for(int i = 0; i < size; i++) {
+         if(this.get(i) != newList.get(i)){
+            return false;
+         }
+      }
+      // Indicated the lists are identical if all preceeding tests passed
+      return true;
+   }
+   
    // pre: none
    // post: returns the size(number of elements within) of the ArrayIntList
    public int size() {

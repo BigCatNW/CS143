@@ -38,6 +38,13 @@ public class ExploringArrayList {
       // Test indexOf() function
       System.out.println("value 9 found at index = " + mylist.indexOf(9));
       
+      // Test equals() function
+      ArrayIntList testlist = new ArrayIntList();
+      testlist.add(1);
+      ArrayIntList testlist2 = new ArrayIntList();
+      testlist.add(1);
+      boolean listequals = testlist.equals(testlist);
+      System.out.println(listequals);
       
    }
 }

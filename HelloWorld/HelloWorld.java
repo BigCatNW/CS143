@@ -9,18 +9,16 @@ import java.util.Scanner;
 // A class to print "Hello World" 5 times and prompt the user to print an additional 5 times.
 class HelloWorld {
    public static void main (String[] args) {
-      printHelloWorld();// Method to print "Hello World" 5 times
+    
       Scanner scan = new Scanner(System.in);
       // Do While loop remains true and is only broken when input is other than "y"or "yes"
+      String input = "";
       do{
+         printHelloWorld();// Method to print "Hello World" 5 times
          System.out.printf("%s\n", "Type \"y\" or \"yes\" to print \"Hello World\" 5 more times or anything else to exit!");
-         String input = scan.nextLine();
-         if("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input)){
-            printHelloWorld();
-         } else {
-            break;
-         }
-       }while(true);
+         input = scan.nextLine();
+
+       }while("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input));
       
    }
    
