@@ -17,6 +17,25 @@ public class PlainSequences implements Sequences{
       descriptions = new ArrayList<String>();
       sequences = new ArrayList<String>();
    }
+   
+   // pre: none
+   // post: constructor for PlainSequences object with two properties
+   public Map<String, Integer> generateFrequencies(int index){
+      String str = sequences.get(0);
+      Map<String, Integer> map = new HashMap<>();
+      for(int i = 0; i <= str.length(); i++){
+         for(int j = i + 1 ; j <= str.length(); j++){
+            if(map.containsKey(str.substring(i,j))){
+               map.put(str.substring(i,j), map.get(str.substring(i,j)) + 1);
+            } else {
+               map.put(str.substring(i,j), 1);
+            }
+         }   
+      }
+      
+      return map;
+   }
+
 
    // pre: none
    // post: returns descriptions
