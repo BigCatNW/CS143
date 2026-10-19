@@ -1,6 +1,9 @@
-// Matthew Cook
-// CS 143 Implement class for manipulating DNA sequence in plain format
-// 10/05/26
+// Matthew Cook aka Big Cat
+// CS 143 
+// Read a DNA sequence file to a string
+//    - format string for printing
+//    - create hashmap for substrings and number of occurences
+// 10/18/26
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,24 +21,28 @@ public class PlainSequences implements Sequences{
       sequences = new ArrayList<String>();
    }
    
-   // pre: none
-   // post: constructor for PlainSequences object with two properties
+   // pre: an index within the bounds of the sequences string
+   // post: returms a hasmap, the keys consist of every substring that can be made from the sequences string,
+   //       the values consist of the number of occurences of each substring within the file.
    public Map<String, Integer> generateFrequencies(int index){
       String str = sequences.get(0);
       Map<String, Integer> map = new HashMap<>();
-      for(int i = 0; i <= str.length(); i++){
+      // iterates over each possible starting index
+      for(int i = index; i <= str.length(); i++){
+         // iterates over each possible ending index
          for(int j = i + 1 ; j <= str.length(); j++){
+            // Checks for presence of current substring.
+            // If there, increment value 1
             if(map.containsKey(str.substring(i,j))){
                map.put(str.substring(i,j), map.get(str.substring(i,j)) + 1);
+            // If not present, add substring as key and 1 as value
             } else {
                map.put(str.substring(i,j), 1);
             }
          }   
       }
-      
       return map;
    }
-
 
    // pre: none
    // post: returns descriptions
@@ -60,7 +67,6 @@ public class PlainSequences implements Sequences{
       }
       descriptions.add(fileName);
       sequences.add(sequence);
-      
    }
    
    // pre: valid index within the array list object
