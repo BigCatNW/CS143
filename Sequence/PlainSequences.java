@@ -2,8 +2,10 @@
 // CS 143 
 // Read a DNA sequence file to a string
 //    - format string for printing
-//    - create hashmap for substrings and number of occurences
-// 10/18/26
+//    - create hashmap for substrings and number of occurence
+//    - Parse sequence into all substrings
+//    - Return a sorted list of substrings
+// 10/26/26
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,7 +24,7 @@ public class PlainSequences implements Sequences{
    }
    
    // pre: an index within the bounds of the sequences string
-   // post: returms a hasmap, the keys consist of every substring that can be made from the sequences string,
+   // post: returms a HashMap, the keys consist of every substring that can be made from the sequences string,
    //       the values consist of the number of occurences of each substring within the file.
    public Map<String, Integer> generateFrequencies(int index){
       String str = sequences.get(0);
@@ -107,6 +109,15 @@ public class PlainSequences implements Sequences{
       }
       return newstr;
    }
+   
+   // pre: a valid mRNA text file and a valid starting index
+   // post: returns all of the substrings of the sequence as a sorted ArrayList
+   public List<String> getSortedListOfSubstrings(int index){
+      List<String> list = new ArrayList<>(this.generateFrequencies(index).keySet());
+      list.sort(Comparator.naturalOrder());
+      return list;
+   }
+
 }
 
 

@@ -3,8 +3,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class PlainSequencesTest {
 
@@ -115,5 +114,39 @@ public class PlainSequencesTest {
       assertEquals("the number of distinct substrings in sequence 0 was not correct.", 66491, frequencies.size());
    }
 
+   @Test
+   public void testGetSortedListOfSubstrings() {
+      Sequences tester = new PlainSequences();
+      String fileName = "plainExampleSmall.text";
+    
+      try {
+         tester.readSequences(fileName);
+      } catch (FileNotFoundException e) { 
+      }
+      
+      //<[A, AG, AGA, C, CA, CAG, CAGA, G, GA, GC, GCA, GCAG, GCAGA, GG, GGC, GGCA, GGCAG, GGCAGA]>
+      List answer = new ArrayList();
+      answer.add("A");
+      answer.add("AG");
+      answer.add("AGA");
+      answer.add("C");
+      answer.add("CA");
+      answer.add("CAG");
+      answer.add("CAGA");
+      answer.add("G");
+      answer.add("GA");
+      answer.add("GC");
+      answer.add("GCA");
+      answer.add("GCAG");
+      answer.add("GCAGA");
+      answer.add("GG");
+      answer.add("GGC");
+      answer.add("GGCA");
+      answer.add("GGCAG");
+      answer.add("GGCAGA");
+
+      List sortedSubStrings = tester.getSortedListOfSubstrings(0);
+      assertEquals("the sorted substrings is not right", answer,sortedSubStrings);
+   }
 
 }

@@ -24,6 +24,7 @@ public class Main {
       }
       Map frequencies = tester.generateFrequencies(0); 
       System.out.println(frequencies);
+      System.out.println(tester.getSortedListOfSubstrings(0));
    }
 
 }
