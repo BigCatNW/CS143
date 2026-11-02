@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class SudokuBoard{
    String boardStr = "";
-   public char[][] board = new char[9][9];
+   public int[][] board = new int[9][9];
    // pre: A constructor, needs a valid sudoku text file as input
    // post: reads the Sudoku text file and stores it in an unformatted string
    public SudokuBoard(String file){
@@ -50,29 +50,20 @@ public class SudokuBoard{
    // pre: a valid SudokuBoard object containing a valid boardStr property
    // post: returns a pretty formatted Sudoku board object
    public String toString(){
-      char[] arr = boardStr.toCharArray();
-      int i = 0;
-      String boardNewStr = "";
-      for(char ch: boardStr.toCharArray()) {
-         i++;
-         // inserts spaces after 2 out of every 3 numbers
-         if(i % 3 != 0) {
-            boardNewStr += ch + " ";
-         } else {
-            boardNewStr += ch;
-         } 
-         // uses bars and dashes to seperate board into ninths
-         if(i == boardStr.length()){
-            break;
-         } else if(i % 27 == 0){
-            boardNewStr += "\n-----------------\n";
-         } else if(i % 9 == 0){
-            boardNewStr += "\n";
-         } else if (i % 3 == 0) {
-            boardNewStr += "|";
+      boardStr = "";
+      for(int row = 0; row < 9; row++){
+         for(int col = 0; col < 9; col++){
+            boardStr += this.board[row][col];
+            if((col + 1) % 3 == 0) {
+               boardStr += '|';
+            }
          }
+         boardStr += "\n";
+         if((row + 1) % 3 == 0 && row < 8) {
+            boardStr += "------------\n";
+         }      
       }
-      return boardNewStr;
+      return boardStr;
    }
    // pre: a SudokuBoard object
    // post: returns true if there are no duplicate number in any row, column, and mini-square
@@ -183,6 +174,36 @@ public class SudokuBoard{
          }
       }
       return solved;
+   }
+   
+   public boolean solve() {
+      boolean boardSolved = false;
+      if(!isValid()){
+         return false;
+      } else if (isSolved()) {
+         return true;
+      } else {
+         for(int row = 0; row < 9; row++) {
+            for(int col = 0; col < 9; col++){
+               if(this.board[row][col] == '.'){
+                  for(int x = 1; x <= 9 && !boardSolved; x++){
+                     board[row][col] = (char) (x + '0');
+                     System.out.println(this.toString());
+                     boardSolved = solve();
+                  }
+                  if(!boardSolved){
+                     board[row][col] = 0;
+                  } 
+               }
+            }
+         }
+      
+      }
+      if(this.isSolved()){
+         return  true;
+      } else {
+         return false;
+      }
    }
   
    

@@ -9,12 +9,12 @@ public class TestingMain{
       travel(1,2);
    }
    public int[] travel(int x, int y){
-      int currentX = 0;
-      int currentY = 0;
+      if(x == 0 && y == 0){
+         System.out.println();
+        }
       // move E
       if(x > currentX){
          System.out.print("E ");
-         int newX = currentX +1;
          travel(x - 1, y);
       }
       // move N

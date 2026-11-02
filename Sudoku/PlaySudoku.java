@@ -9,16 +9,10 @@ public class PlaySudoku{
    // pre: none, this is a constructor
    // post: reads a sudoku board file and prints it
    public void main(String[] args){
-      String file = "boards/valid-complete.sdk";
+      String file = "boards/valid-incomplete.sdk";
       SudokuBoard board = new SudokuBoard(file);
       System.out.println(board.toString());
       System.out.println();
-      for(int i = 0; i < 9; i++){
-         for(int j = 0; j < 9; j++){
-            System.out.printf("%s", board.board[i][j]);
-         }
-         System.out.println();
-      }
       if(board.isValid()){
          System.out.println("Is valid");
       } else {
@@ -30,6 +24,7 @@ public class PlaySudoku{
       } else {
          System.out.println("Is NOT solved");
       }
+      board.solve();
    }
 }
 /* jGrasp Output:
