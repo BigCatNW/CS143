@@ -16,41 +16,29 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class SudokuBoard{
-   String boardStr = "";
-   public int[][] board = new int[9][9];
+   String fileRow = "";
+   public char[][] board = new char[9][9];
    // pre: A constructor, needs a valid sudoku text file as input
    // post: reads the Sudoku text file and stores it in an unformatted string
    public SudokuBoard(String file){
       try(Scanner scanner = new Scanner(Path.of(file))){
-         while (scanner.hasNextLine()) {
-            boardStr += scanner.nextLine();
+         for(int row = 0; row < 9; row++){
+            fileRow = scanner.nextLine();
+            for(int col = 0; col < 9; col++){
+               board[row][col] = fileRow.charAt(col);
+            }
          }
       } catch (IOException e) {
          System.err.println("Error: The file could not be found.");
          e.printStackTrace();
       }   
-      toBoardArr();
    }
    
-   // helper function to create char board[9][9]
-   // pre: a valid sudoku board data text file
-   // post: a 9x9 2D array of characters
-   public void toBoardArr(){
-      char[] arr = boardStr.toCharArray();
-      System.out.println("Arr length = " + arr.length);
-      int cnt = 0;
-      for(int i = 0; i < 9; i++){
-         for(int j = 0; j < 9; j++){
-            this.board[i][j] = arr[cnt];
-            cnt++;
-         }
-      }
-   }
    
    // pre: a valid SudokuBoard object containing a valid boardStr property
    // post: returns a pretty formatted Sudoku board object
    public String toString(){
-      boardStr = "";
+      String boardStr = "";
       for(int row = 0; row < 9; row++){
          for(int col = 0; col < 9; col++){
             boardStr += this.board[row][col];
@@ -176,6 +164,9 @@ public class SudokuBoard{
       return solved;
    }
    
+   // pre: a valid SudokuBoard object
+   // post: returns true if the board is valid and can be solved, else returns false
+   //       also modifies the this.board array into a solved Sudoku board if possible.
    public boolean solve() {
       boolean boardSolved = false;
       if(!isValid()){
@@ -186,13 +177,12 @@ public class SudokuBoard{
          for(int row = 0; row < 9; row++) {
             for(int col = 0; col < 9; col++){
                if(this.board[row][col] == '.'){
-                  for(int x = 1; x <= 9 && !boardSolved; x++){
-                     board[row][col] = (char) (x + '0');
-                     System.out.println(this.toString());
+                  for(int c = 1; c <= 9 && !boardSolved; c++){
+                     board[row][col] = (char) ('0' + c);
                      boardSolved = solve();
                   }
                   if(!boardSolved){
-                     board[row][col] = 0;
+                     board[row][col] = '.';
                   } 
                }
             }

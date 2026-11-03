@@ -4,10 +4,7 @@ public class SudokuSolverEngine {
    public static void main(String[] args) {
       // Here I have called my class `MySudokuBoard` if you named your class
       // differently, modify the line below to use your own class name
-      int i = 4;
-      System.out.println((char) i + '0');
-      System.exit(0);
-      SudokuBoard board = new SudokuBoard("boards/very-fast-solve.sdk");
+      SudokuBoard board = new SudokuBoard("boards/valid-incomplete.sdk");
       System.out.println("Initial board");
       System.out.println(board);
       System.out.println();
