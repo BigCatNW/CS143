@@ -1,11 +1,13 @@
 // Matthew Cook aka Big Cat
 // CS 143
-// Sudoku HW 2
+// Sudoku HW 3
 // github.com/BigCatNW/CS143/tree/main/Sudoku
 //
 // This file contains the SodokuBoard class which takes a
 // Sodoku text file and formats it a string for printing,
-// validates a board, and checks for a win
+// validates a board, and checks for a win.
+// It also contains the solve method which uses a recursive backtraking method
+//    to solve any valid Sudoku board with brute force. 
 import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Set;
@@ -195,6 +197,39 @@ public class SudokuBoard{
          return false;
       }
    }
-  
-   
 }
+
+/*
+  ----jGRASP exec: java -ea SudokuSolverEngine
+ Initial board
+ .34|678|912|
+ .72|195|348|
+ 198|342|567|
+ ------------
+ ..9|.61|423|
+ .26|853|791|
+ .13|924|.56|
+ ------------
+ .61|537|284|
+ .8.|419|635|
+ 345|.86|179|
+ 
+ 
+ Solving board...SOLVED in 0.725 seconds.
+ 
+ 534|678|912|
+ 672|195|348|
+ 198|342|567|
+ ------------
+ 859|761|423|
+ 426|853|791|
+ 713|924|856|
+ ------------
+ 961|537|284|
+ 287|419|635|
+ 345|286|179|
+ 
+ 
+  ----jGRASP: Operation complete.
+  
+*/
