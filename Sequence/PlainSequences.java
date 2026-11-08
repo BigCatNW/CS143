@@ -117,7 +117,111 @@ public class PlainSequences implements Sequences{
       list.sort(Comparator.naturalOrder());
       return list;
    }
+   
+   //pre: a valid mRNA text file and a valid starting index
+   //post: returns the reverse compliment by reversing the sequence and replacing charaacters as follows:
+   //       't' becomes 'a',
+   //       'a' becomes 't',
+   //       'g' becomes 'c', 
+   //       'c' becomes 'g'.
+   public String getReverseComplement(int index){
+      String str = sequences.get(0);
+      Stack<Character> s = new Stack<>();
+      for(int i = 0; i < str.length(); i++){
+         s.push(str.charAt(i));
+      }
+      str = "";
+      while(!s.isEmpty()){
+         switch(s.peek()) {
+            case 'T':
+               str = str + 'A';
+               s.pop();
+               break;
+            case 'A':
+               str = str + 'T';
+               s.pop();
+               break;
+            case 'G':
+               str = str + 'C';
+               s.pop();
+               break;
+            case 'C':
+               str = str + 'G'; 
+               s.pop();
+               break;
+         }
+        
+      }
+      return str;
+   }
 
 }
 
-
+/*
+ 
+  ----jGRASP exec: java junit_runner.JgrRunner 57738 PlainSequencesTest
+ Running 7 JUnit tests.
+ 
+  === PlainSequencesTest.testGetReverseComplement ===
+ org.junit.ComparisonFailure: the reverse complement is not right expected:<[TCTGCC]> but was:<[]>
+ 	at PlainSequencesTest.testGetReverseComplement(PlainSequencesTest.java:163)
+ 
+ Completed 7 tests  6 passed  1 failed
+ 
+  ----jGRASP: Operation complete.
+ 
+  ----jGRASP exec: java -Xint -Xrunjdwp:transport=dt_socket,suspend=y,server=y junit_runner.JgrRunner 57587 PlainSequencesTest
+  ----jGRASP: Connected to debugger.
+ Running 7 JUnit tests.
+  ----jGRASP: Process ended by user.
+ 
+  ----jGRASP exec: java -Xint -Xrunjdwp:transport=dt_socket,suspend=y,server=y junit_runner.JgrRunner 57602 PlainSequencesTest
+  ----jGRASP: Connected to debugger.
+ Running 7 JUnit tests.
+  ----jGRASP: Process ended by user.
+ 
+  ----jGRASP exec: java junit_runner.JgrRunner 58225 PlainSequencesTest
+ Running 7 JUnit tests.
+ 
+  === PlainSequencesTest.testGetReverseComplement ===
+ org.junit.ComparisonFailure: the reverse complement is not right expected:<[TCTGCC]> but was:<[]>
+ 	at PlainSequencesTest.testGetReverseComplement(PlainSequencesTest.java:163)
+ 
+ Completed 7 tests  6 passed  1 failed
+ 
+  ----jGRASP: Operation complete.
+ 
+  ----jGRASP exec: java -Xint -Xrunjdwp:transport=dt_socket,suspend=y,server=y junit_runner.JgrRunner 58227 PlainSequencesTest
+  ----jGRASP: Connected to debugger.
+ Running 7 JUnit tests.
+  ----jGRASP: Process ended by user.
+ 
+  ----jGRASP exec: java -Xint -Xrunjdwp:transport=dt_socket,suspend=y,server=y junit_runner.JgrRunner 58241 PlainSequencesTest
+  ----jGRASP: Connected to debugger.
+ Running 7 JUnit tests.
+ 
+  === PlainSequencesTest.testGetReverseComplement ===
+ org.junit.ComparisonFailure: the reverse complement is not right expected:<[TCTGCC]> but was:<[CCGTCT]>
+ 	at PlainSequencesTest.testGetReverseComplement(PlainSequencesTest.java:163)
+  ----jGRASP: Process ended by user.
+ 
+  ----jGRASP exec: java junit_runner.JgrRunner 49726 PlainSequencesTest
+ Running 7 JUnit tests.
+ 
+ Completed 7 tests  7 passed
+ 
+  ----jGRASP: Operation complete.
+ 
+  ----jGRASP exec: java -Xint -Xrunjdwp:transport=dt_socket,suspend=y,server=y junit_runner.JgrRunner 49728 PlainSequencesTest
+  ----jGRASP: Connected to debugger.
+ Running 7 JUnit tests.
+  ----jGRASP: Process ended by user.
+ 
+  ----jGRASP exec: java junit_runner.JgrRunner 65334 PlainSequencesTest
+ Running 7 JUnit tests.
+ 
+ Completed 7 tests  7 passed
+ 
+  ----jGRASP: Operation complete.
+ 
+ */
