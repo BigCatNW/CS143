@@ -173,6 +173,5 @@ public class PlainSequencesTest {
       assertEquals("the reverse complement is not right", answer,reverseComplement);
 
    }
-   
 
 }
